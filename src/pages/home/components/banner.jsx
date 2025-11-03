@@ -1,38 +1,50 @@
-import React from "react";
-import products from "../../../data/product.js"
-import { ProductCard } from "../../../components/product-card.jsx"
-import { Hero } from "../../../assets/icons/hero-img.jsx"
+import { YANGI } from '../../../data/yangi'
+import foto from '../../../assets/banner/image.png'
+import { ProductCard } from '../../../components/productCard'
+import strelka_r from '../../../assets/banner/strelka_r.png'
+import strelka_l from '../../../assets/banner/strelka_l.png'
+import like from '../../../assets/banner/like.svg'
+import line from '../../../assets/banner/line.svg'
 
 export const Banner = () => {
-  return (
-    <section className="pt-4 pb-14">
-      <div className="container">
-        <div className="flex gap-6">
-          <div className="flex grow bg-blue-100 justify-between rounded-2xl">
-            <div className="mt-8">
-              <h2 className="text-2xl font-bold ml-4 mb-3">Кўп ўқилаётганлар</h2>
-              <Hero />
+    return (
+        <div className='container'>
+            <div className='flex gap-6'>
+                <div className='rounded-2xl  bg-[#eef4ff] flex'>
+                    <div>
+                        <h2 className='text-2xl p-8'>Кўп ўқилаётганлар</h2>
+                        <img className='w-[287px] h-[274px] ' src={foto} alt="foto" />
+                    </div>
+
+                    <div className="flex grow items-center gap-4">
+                        <img className='w-6 h-6' src={strelka_l} alt="img" />
+                        <div className="grid grid-cols-3 gap-4 pt-8">
+                            {
+                                YANGI.slice(0, 3).map((e) => (
+                                    <ProductCard
+                                        key={e.id}
+                                        img={e.img}
+                                        title={e.title}
+                                    />
+                                ))
+                            }
+                        </div>
+                        <img className='w-6 h-6 mr-6' src={strelka_r} alt="img" />
+                    </div>
+                </div>
+                <div className='w-[261px] rounded-xl px-6 bg-[#3748a6]' style={{
+                    backgroundImage: `url(${line})`,
+                    backgroundRepeat: "repeat",
+                    backgroundPosition: "center",
+                    backgroundSize: "auto"
+                }}>
+                    <div className='flex flex-col items-center'>
+                        <h1 className=' text-2xl font-bold mt-8 mb-5 text-white text-center'>Китоб ўқишни ёқтирасизми?</h1>
+                        <p className='text-2xl text-[18px] mt-8 mb-5 text-white text-center'>Унда пулингизни тежаш учун ўзингиз йоқтирган рукнга обуна бўлинг</p>
+                    </div>
+                    <button className='w-full bg-amber-50 flex gap-[18px] rounded-[18px] px-6 py-[7px]'><img src={like} alt="img" /> <p className='text-[18px] font-bold'>Обуна бўлиш</p></button>
+                </div>
             </div>
-            <div className="w-[600px] h-[200px] flex gap-3 m-8">
-              {
-                products.filter((e, i) => i <= 2)
-                  .map((item) => (
-                    <ProductCard key={item.id} img={item.img} title={item.title} />
-                  ))
-              }
-            </div>
-          </div>
-          <div className="w-[261px] h-[351px] py-10 px-6 bg-blue-600 rounded-2xl">
-            <h2 className="text-2xl font-semibold text-white">Китоб ўқишни ёқтирасизми?</h2>
-            <p className="text-[18px] font-normal text-white mt-5 mb-[77px]">
-              Унда пулингизни тежаш учун ўзингиз йоқтирган рукнга обуна бўлинг
-            </p>
-            <button className="bg-white w-[210px] h-12 font-semibold rounded-2xl">
-              Обуна бўлиш
-            </button>
-          </div>
         </div>
-      </div>
-    </section>
-  );
-};
+    )
+}
